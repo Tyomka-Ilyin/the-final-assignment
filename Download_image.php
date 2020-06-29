@@ -27,7 +27,7 @@ function sel_id($conn,$sql)
 
       foreach ($_FILES["images"]["name"] as $key => $value) {
         $image = $_FILES["images"]["name"][$key];
-        $tmp_path = $_FILES['images[]']['tmp_name'];
+        $tmp_path = $_FILES['images']['tmp_name'][$key];
         $path='uploads/';
         $full_path=$path.$image;
 
@@ -41,10 +41,10 @@ function sel_id($conn,$sql)
 
         $sql_ins="INSERT INTO Images_users(id_user,id_image) VALUES ('$user_id','$last_id')";
         ins_image($conn,$sql_ins);
+      
       }
 
       header("Location: http://dz4.ru/My_page.php?nickname=$nickname&id_user=$user_id");
-      
   }
   else {
     echo "Не удалось загрузить изображение";
